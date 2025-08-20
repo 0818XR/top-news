@@ -1,6 +1,17 @@
 package com.qiubai.headline.controller;
 
+import com.qiubai.headline.common.Result;
+import com.qiubai.headline.pojo.NewsType;
+import com.qiubai.headline.service.NewsTypeService;
+import com.qiubai.headline.service.impl.NewsTypeServiceImpl;
+import com.qiubai.headline.util.WebUtil;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+import java.io.IOException;
+import java.util.List;
 
 /**
  * 门户控制器
@@ -9,4 +20,12 @@ import jakarta.servlet.annotation.WebServlet;
  */
 @WebServlet("/portal/*")
 public class PortalController extends BaseController{
+    NewsTypeService typeService = new NewsTypeServiceImpl();
+
+    protected void findAllTypes(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        List<NewsType> newsTypeList = typeService.findAll();
+
+        Result<List<NewsType>> result = Result.ok(newsTypeList);
+        WebUtil.writeJson(resp, result);
+    }
 }
