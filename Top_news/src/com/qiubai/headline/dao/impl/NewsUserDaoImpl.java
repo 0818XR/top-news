@@ -30,7 +30,7 @@ public class NewsUserDaoImpl extends BaseDao implements NewsUserDao {
         return baseUpdate(sql,
                 registUser.getUid(),
                 registUser.getUsername(),
-                registUser.getUserPwd(), 
+                registUser.getUserPwd(),
                 registUser.getNickName()
                 );
     }

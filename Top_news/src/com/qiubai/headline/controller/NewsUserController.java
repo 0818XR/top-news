@@ -23,6 +23,24 @@ public class NewsUserController extends BaseController{
     NewsUserService userService = new NewsUserServiceImpl();
 
     /**
+     *
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
+    protected void checkLogin(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String token = req.getHeader("token");
+        Result result = Result.build(null, ResultCodeEnum.NOTLOGIN);
+        if(token != null) {
+            if(!JwtHelper.isExpiration(token)) {
+                result = Result.ok(null);
+            }
+        }
+        WebUtil.writeJson(resp, result);
+    }
+
+    /**
      * 用户注册功能
      * @param req
      * @param resp
