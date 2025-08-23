@@ -2,6 +2,7 @@ package com.qiubai.headline.service.impl;
 
 import com.qiubai.headline.dao.NewsHeadLineDao;
 import com.qiubai.headline.dao.impl.NewsHeadLineDaoImpl;
+import com.qiubai.headline.pojo.NewsHeadline;
 import com.qiubai.headline.pojo.vo.HeadlineDetailVo;
 import com.qiubai.headline.pojo.vo.HeadlinePageVo;
 import com.qiubai.headline.pojo.vo.HeadlineQueryVo;
@@ -46,5 +47,20 @@ public class NewsHeadLineServiceImpl implements NewsHeadLineService {
         Map<String, HeadlineDetailVo> data = new HashMap<>();
         data.put("headline",detailVo);
         return data;
+    }
+
+
+    public Integer addNewsHeadline(NewsHeadline newsHeadline) {
+        return headLineDao.addNewsHeadline(newsHeadline);
+    }
+
+    @Override
+    public Integer updateNewsHeadline(NewsHeadline newsHeadline) {
+        return headLineDao.updateNewsHeadline(newsHeadline);
+    }
+
+    @Override
+    public Integer remove(Integer hid) {
+        return headLineDao.remove(hid);
     }
 }

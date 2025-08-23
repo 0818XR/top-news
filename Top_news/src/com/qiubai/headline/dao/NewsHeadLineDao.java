@@ -1,5 +1,6 @@
 package com.qiubai.headline.dao;
 
+import com.qiubai.headline.pojo.NewsHeadline;
 import com.qiubai.headline.pojo.vo.HeadlineDetailVo;
 import com.qiubai.headline.pojo.vo.HeadlinePageVo;
 import com.qiubai.headline.pojo.vo.HeadlineQueryVo;
@@ -29,5 +30,21 @@ public interface NewsHeadLineDao {
      */
     HeadlineDetailVo findHeadlineDetail(Integer hid);
 
+    /**
+     *
+     * @param hid
+     * @return
+     */
     Integer addPageViews(Integer hid);
+
+    /**
+     *
+     * @param newsHeadline
+     * @return
+     */
+    Integer addNewsHeadline(NewsHeadline newsHeadline);
+
+    Integer updateNewsHeadline(NewsHeadline newsHeadline);
+
+    Integer remove(Integer hid);
 }

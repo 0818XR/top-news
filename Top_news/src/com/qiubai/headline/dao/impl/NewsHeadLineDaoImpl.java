@@ -3,6 +3,7 @@ package com.qiubai.headline.dao.impl;
 import com.qiubai.headline.dao.BaseDao;
 import com.qiubai.headline.dao.NewsHeadLineDao;
 import com.qiubai.headline.dao.NewsUserDao;
+import com.qiubai.headline.pojo.NewsHeadline;
 import com.qiubai.headline.pojo.vo.HeadlineDetailVo;
 import com.qiubai.headline.pojo.vo.HeadlinePageVo;
 import com.qiubai.headline.pojo.vo.HeadlineQueryVo;
@@ -104,5 +105,38 @@ public class NewsHeadLineDaoImpl extends BaseDao implements NewsHeadLineDao {
         String sql = "update news_headline set page_views = page_views + 1 where hid = ? ";
         return baseUpdate(sql, hid);
 
+    }
+
+    @Override
+    public Integer addNewsHeadline(NewsHeadline newsHeadline) {
+        String sql = "insert into news_headline values (DEFAULT, ?, ?, ?, ?, 0, now(), now(), 0) ";
+        return baseUpdate(sql,
+                newsHeadline.getTitle(),
+                newsHeadline.getArticle(),
+                newsHeadline.getType(),
+                newsHeadline.getPublisher()
+                );
+    }
+
+    @Override
+    public Integer updateNewsHeadline(NewsHeadline newsHeadline) {
+        String sql = """
+                update news_headline
+                set title = ?, article = ?, type = ?, update_time = now()
+                where hid = ? 
+                """;
+
+        return baseUpdate(sql,
+                newsHeadline.getTitle(),
+                newsHeadline.getArticle(),
+                newsHeadline.getType(),
+                newsHeadline.getHid()
+                );
+    }
+
+    @Override
+    public Integer remove(Integer hid) {
+        String sql = "update news_headline set is_deleted = 1, update_time = now() where hid = ?";
+        return baseUpdate(sql, hid);
     }
 }

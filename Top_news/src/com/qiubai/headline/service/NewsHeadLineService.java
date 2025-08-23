@@ -1,5 +1,6 @@
 package com.qiubai.headline.service;
 
+import com.qiubai.headline.pojo.NewsHeadline;
 import com.qiubai.headline.pojo.vo.HeadlineDetailVo;
 import com.qiubai.headline.pojo.vo.HeadlineQueryVo;
 
@@ -20,4 +21,15 @@ public interface NewsHeadLineService {
      * @return
      */
     Map<String, HeadlineDetailVo> findHeadlineDetail(Integer hid);
+
+    /**
+     *
+     * @param newsHeadline
+     * @return
+     */
+    Integer addNewsHeadline(NewsHeadline newsHeadline);
+
+    Integer updateNewsHeadline(NewsHeadline newsHeadline);
+
+    Integer remove(Integer hid);
 }
